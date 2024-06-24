@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let answer = [];
+
+        answer = arr.filter((value, i) => {
+          if (arr.indexOf(value) === i) return true;
+        });
+        //filter()는 콜백함수의 결과값이 참일 경우만 반환한다.
+
+        return answer;
+      }
+
+      let arr = ["good", "time", "good", "time", "student"];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>

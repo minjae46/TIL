@@ -6,9 +6,12 @@
   <body>
     <script>
       function solution(arr) {
+        // 7개 합 === 100이 아닌, 9개합 - 2개 === 100의 2개를 구한다.
+        // 9개 총합에서 2개숫자의 합을 뺀 결과가 100이면 해당 2개 숫자를 제외시킨다.
         let answer = arr; //얕은 복사
-        let sum = arr.reduce((a, b) => a + b, 0);
+        let sum = arr.reduce((a, b) => a + b, 0); // 9개 숫자 총합
         let flag = 0;
+
         for (let i = 0; i < 8; i++) {
           //j가 9까지 돌기 때문에 i는 8까지만 보면 됨
           for (let j = i + 1; j < 9; j++) {

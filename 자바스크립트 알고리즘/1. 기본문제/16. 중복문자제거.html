@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(str) {
+        let answer = "";
+
+        for (let i = 0; i < str.length; i++) {
+          //console.log(str[i], i, str.indexOf(s[i]));
+          if (str.indexOf(str[i]) === i) answer += str[i];
+          // string.indexOf() : 검색된 문자열이 '첫번쨰'로 나타나는 index를 return.
+        }
+
+        return answer;
+      }
+
+      console.log(solution("ksaekkset"));
+    </script>
+  </body>
+</html>
