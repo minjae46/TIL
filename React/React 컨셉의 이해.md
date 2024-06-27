@@ -2,7 +2,7 @@
 
 ## React의 핵심
 
-> html을 먼저 구축한 후 자바스크립트로 DOM 요소들을 조작하는 방식이 아닌, 자바스크립트로 직접 DOM 요소(html)를 생성하는 것.
+_html을 먼저 구축한 후 자바스크립트로 DOM 요소들을 조작하는 방식이 아닌, 자바스크립트로 직접 DOM 요소(html)를 생성한다 -_
 
 - **React.createElement()** : DOM 요소를 생성
 - **ReactDOM.render()** : 생성한 요소를 html로 변환
