@@ -1,0 +1,57 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      // 기준 좌표에서 상하좌우 4방향 탐색 문제 :
+      function solution(arr) {
+        let answer = 0; //봉우리의 갯수
+        let n = arr.length;
+
+        // 4방향 탐색 문제의 가장 핵심 요소 !!!
+        let dx = [-1, 0, 1, 0];
+        let dy = [0, 1, 0, -1]; // 기준에서 12, 3시, 6시, 9시 방향 요소 탐색
+
+        for (let i = 0; i < n; i++) {
+          for (let j = 0; j < n; j++) {
+            // 기준 좌표 : (i행 j열) 요소 = arr[i][j]
+            let flag = 1;
+
+            for (let k = 0; k < 4; k++) {
+              // dx, dy arr를 도는 for문
+              let ni = i + dx[k]; // 행 좌표
+              let nj = j + dy[k]; // 열 좌표
+
+              if (
+                // index가 음수값이 되는 것을 막는 조건식
+                ni >= 0 &&
+                ni < n &&
+                nj >= 0 &&
+                nj < n &&
+                arr[ni][nj] >= arr[i][j] // arr[ni][nj] = (ni행, nj열) : 기준 좌표의 상하좌우 요소
+              ) {
+                flag = 0;
+                break;
+                // 기준 요소의 상하좌우에 기준보다 큰 수가 있는 경우 flag 초기화하고 빠져나옴.
+              }
+            }
+            if (flag) answer++;
+            // flag가 여전히 1인 경우, 봉우리이므로 answer +1.
+          }
+        }
+        return answer;
+      }
+
+      let arr = [
+        [5, 3, 7, 2, 3],
+        [3, 7, 1, 6, 1],
+        [7, 2, 5, 3, 4],
+        [4, 3, 6, 4, 1],
+        [8, 7, 3, 5, 2],
+      ];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
