@@ -7,8 +7,8 @@
     <script>
       function solution(str) {
         let answer = "";
-
         str = str + " "; // 맨 뒤에 빈 문자를 하나 넣어 주어서 탐색을 종료해 줄 수 있다.
+
         let cnt = 1;
         for (let i = 0; i < str.length - 1; i++) {
           if (str[i] === str[i + 1]) cnt++;

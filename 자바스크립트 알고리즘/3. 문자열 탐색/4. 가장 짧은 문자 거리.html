@@ -9,7 +9,7 @@
       function solution(s, t) {
         let answer = [];
 
-        let p = 1000;
+        let p = 1000; // 요소와의 거리. 처음엔 무작위의 큰 숫자로 설정.
         for (let x of s) {
           if (x === t) {
             p = 0;
