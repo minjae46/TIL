@@ -8,6 +8,7 @@
       // 중요한 것은, 기준 잡기. 즉, a를 기준으로 봤을 때 분류를 어떻게 하면 되는가?를 생각하면 된다.
       function solution(a, b) {
         let answer = "";
+
         for (let i = 0; i < a.length; i++) {
           if (a[i] === b[i]) answer += "D" + " ";
           else if (a[i] === 1 && b[i] === 3) answer += "A" + " ";
