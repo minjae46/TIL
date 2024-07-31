@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      // 소수 구하는 함수. 공식처럼 통채로 익혀두기.
+      function isPrime(num) {
+        if (num === 1) return false; // 1은 소수가 아님.
+        for (let i = 2; i <= parseInt(Math.sqrt(num)); i++) {
+          if (num % i === 0) return false;
+        }
+        return true;
+      }
+
+      function solution(arr) {
+        let answer = [];
+
+        // 첫 번째 방법.
+        for (let x of arr) {
+          let res = 0; // x를 뒤집은 결과.
+          // 각 자릿수의 순서를 뒤집는 while문. 통째로 공식처럼 생각하자.
+          while (x) {
+            let t = x % 10; // t = x의 1의 자릿수.
+            res = res * 10 + t;
+            x = parsInt(x / 10);
+          }
+          if (isPrime(res)) {
+            answer.push(res);
+          }
+        }
+
+        // 두 번째 방법.
+        /*
+        for (let x of arr) {
+          let res = Number(x.toString().split("").reverse().join(""));
+          if (isPrime(res)) answer.push(res);
+        }
+        */
+
+        return answer;
+      }
+
+      let arr = [32, 55, 62, 20, 250, 370, 200, 30, 100];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
