@@ -1,0 +1,78 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      // 일반적인 방법대로 이중for문으로 해결하면, 시간복잡도는 O(s.length*t.length)로 엄청난 손해를 보게 된다.
+      // 투포인터알고리즘과 슬라이딩윈도우를 활용하여 On으로 끝낼 수 있다.
+
+      // t문자열의 해쉬맵을 만든 후, s문자열을 투포인터알고리즘과 슬라이딩윈도우로 탐색하며 s문자열의 해쉬맵을 만들고, 비교한다.
+      //     - 창문이 t문자열의 길이만큼 열리면, 그만큼의 s문자열 해쉬맵을 만든 후 비교하여 아나그램이 되는지 아닌지 확인한다.
+      //     - 그다음 투포인터를 움직여서 다음 위치의 창문으로 이동한다. 이동 시, 창문에 포함되지 않는 문자는 삭제하고, 새로 나타난 문자는 추가한다.
+      //     - t문자열과 s부분문자열(새 창문)의 해쉬맵을 비교하여 아나그램 가능 여부를 확인한다.
+
+      function compareMaps(map1, map2) {
+        if (map1.size !== map2.size) return false;
+        // 즉, 키(문자)의 종류가 다르면 false.
+        for (let [key, val] of map1) {
+          if (!map2.has(key) || map2.get(key) !== val) return false;
+          // map1의 키가 map2에 있는가 or 있다면, 그 키의 밸류값이 map1 키의 밸류값과 같은가
+        }
+        return true;
+      }
+
+      function solution(s, t) {
+        let answer = 0;
+
+        let tH = new Map();
+        let sH = new Map();
+
+        // t문자열 해쉬맵.
+        for (let x of t) {
+          if (tH.has(x)) {
+            tH.set(x, tH.get(x) + 1);
+          } else {
+            tH.set(x, 1);
+          }
+        }
+
+        // s문자열의 창문과 그 해쉬맵 세팅. t문자열 길이보다 하나 적게 열어야 하는데, 이는 마지막 요소는 rt 포인터를 세팅하기 위함이다.
+        for (let i = 0; i < t.length - 1; i++) {
+          if (sH.has(s[i])) {
+            sH.set(s[i], sH.get(s[i]) + 1);
+          } else {
+            sH.set(s[i], 1);
+          }
+        }
+
+        // 투 포인터즈 세팅.
+        let lt = 0;
+        for (let rt = t.length - 1; rt < s.length; rt++) {
+          if (sH.has(s[rt])) {
+            sH.set(s[rt], sH.get(s[rt]) + 1);
+          } else {
+            sH.set(s[rt], 1);
+          }
+
+          if (compareMaps(sH, tH)) {
+            answer++;
+            // 이 아래로는 lt 포인터의 밸류값을 하나 빼거나, 밸류값이 0이라면 키(문자)를 없앤 후 lt포인터가 오른쪽으로 하나 이동하는 코드.
+            sH.set(s[lt], sH.get(s[lt]) - 1);
+          }
+          if (sH.get(s[lt]) === 0) {
+            sH.delete(s[lt]);
+            lt++;
+          }
+        }
+
+        return answer;
+      }
+
+      let a = "bacaAacba";
+      let b = "abc";
+      console.log(solution(a, b));
+    </script>
+  </body>
+</html>
