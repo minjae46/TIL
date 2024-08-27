@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      // 스택 자료구조 : 자료가 들어가는 입구와 나오는 입구가 같음. 따라서 가장 나중에 들어간 자료가 가장 처음으로 나오게 됨(Last In First Out).
+      // 스택에 자료를 넣었다가 뺏다 하면서 스택이 텅 비면 괄호 짝이 맞는 원리.
+      function solution(s) {
+        let answer = "YES";
+        stack = [];
+
+        for (let x of s) {
+          if (x === "(") {
+            stack.push(x);
+          } else {
+            if (stack.length === 0) {
+              return "NO";
+            }
+            stack.pop();
+          }
+        }
+        if (stack.length > 0) return "NO";
+        return answer;
+      }
+
+      let a = "(()(()))(()";
+      console.log(solution(a));
+    </script>
+  </body>
+</html>
+d
