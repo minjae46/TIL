@@ -12,3 +12,5 @@
 부모 ~ 조상 요소 중에 position 속성(static을 제외한 relative, absolute, fixed 중 하나)을 가진 요소가 있으면, 그 부모 요소를 기준으로 움직인다.
 
 position을 가진 조상이 하나도 없을 경우, 가장 상위 html 태그인 body 태그를 기준으로 움직인다.
+
+absolute 속성을 가진 요소는 반드시 width를 지정해 주어야 한다.
